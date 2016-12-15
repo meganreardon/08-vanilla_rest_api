@@ -8,14 +8,17 @@ const PORT = process.env.PORT || 3000;
 const router = new Router();
 
 router.get('/api/cheese', function(req, res) {
+  console.log(':::reached inside get api function:::');
+  console.log('::: line 13 :::');
   if (req.url.query.id) {
     storage.fetchItem('cheese', req.url.query.id)
     .then( cheese => {
       res.writeHead(200, {'Content-Type': 'application/json'});
-      res.write(JSON.strinify(cheese));
+      res.write(JSON.stringify(cheese));
       res.end();
     })
     .catch( err => {
+      console.log(':::reached get function error block:::');
       console.error(err);
       res.writeHead(404, {'Content-Type': 'text/plain'});
       res.write('File not found. Who moved my cheese?');
@@ -23,6 +26,9 @@ router.get('/api/cheese', function(req, res) {
     });
     return;
   }
+  res.writeHead(400, {'Content-Type': 'text/plain'});
+  res.write('Bad request.');
+  res.end;
 });
 
 router.post('/api/cheese', function(req, res) {
@@ -34,7 +40,7 @@ router.post('/api/cheese', function(req, res) {
     res.end();
   } catch (err) {
     console.error(err);
-    res.writeHead(300,{'Content-Type': 'text/plain'});
+    res.writeHead(400,{'Content-Type': 'text/plain'});
     res.write('Bad request. Bad cheese.');
     res.end();
   }

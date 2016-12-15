@@ -16,7 +16,7 @@ exports.createItem = function(schemaName, item) {
 };
 
 exports.fetchItem = function(schemaName, id) {
-  return newPromise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
 
     if (!schemaName) return reject(new Error('Schema name was expected, no schema name arrived.'));
     if (!id) return reject(new Error('An id was expected, no id arrived.'));
