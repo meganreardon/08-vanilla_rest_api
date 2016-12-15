@@ -25,7 +25,7 @@ describe('Cheese Routes', function() {
 });
 
 describe('GET: /api/cheese', function() {
-  it('should return a note', function(done) {
+  it('should return a cheese', function(done) {
     request.get(`localhost:8000/api/cheese?id=${cheese.id}`)
     .end((err, res) => {
       if (err) return done(err);

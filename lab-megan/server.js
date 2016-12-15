@@ -1,15 +1,15 @@
 'use strict';
 
 const http = require('http');
-const Cheese = require('./model/note.js');
-const Router = require('.lib/router.js');
-const storage = require('.lib/storage.js');
+const Cheese = require('./model/cheese.js');
+const Router = require('./lib/router.js');
+const storage = require('./lib/storage.js');
 const PORT = process.env.PORT || 3000;
 const router = new Router();
 
 router.get('/api/cheese', function(req, res) {
   if (req.url.query.id) {
-    storage.fetchItem('note', req.url.query.id)
+    storage.fetchItem('cheese', req.url.query.id)
     .then( cheese => {
       res.writeHead(200, {'Content-Type': 'application/json'});
       res.write(JSON.strinify(cheese));
@@ -25,7 +25,7 @@ router.get('/api/cheese', function(req, res) {
   }
 });
 
-router.post('/api/note', function(req, res) {
+router.post('/api/cheese', function(req, res) {
   try {
     var cheese = new Cheese(req.body.name, req.body.content);
     storage.createItem('cheese', cheese);

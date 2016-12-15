@@ -25,7 +25,7 @@ exports.fetchItem = function(schemaName, id) {
     if (!schema) return reject(new Error('Schema not found.'));
 
     var item = schema[id];
-    if (!item) return reject(new Error('item not found'));
+    if (!item) return reject(new Error('Item not found.'));
 
     resolve(item);
   });
