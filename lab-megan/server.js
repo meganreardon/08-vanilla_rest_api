@@ -28,9 +28,8 @@ router.get('/api/cheese', function(req, res) {
   }
   res.writeHead(400, {'Content-Type': 'text/plain'});
   res.write('Bad request.');
-  res.end;
+  res.end();
 });
-
 
 router.post('/api/cheese', function(req, res) {
   try {
@@ -47,27 +46,47 @@ router.post('/api/cheese', function(req, res) {
   }
 });
 
-//move this down
 router.delete('/api/cheese', function(req, res) {
-  if(req.url.query.id) {
-    console.log('::: about to delete record :::');
-    // TODO delete the record here
+  if (req.url.query.id) {
+    storage.deleteItem('cheese', req.url.query.id)
     .then( cheese => {
-      res.writeHead(204, {'Content-Type': 'text/plain'});
-      res.write('The cheese has been deleted. I mean, eaten.');
+      res.writeHead(204, {'Content-Type': 'application/json'});
+      res.write('Your cheese has been eaten. I mean deleted.'); //NOTE this might not show up by default
       res.end();
     })
     .catch( err => {
+      console.error(err);
       res.writeHead(404, {'Content-Type': 'text/plain'});
       res.write('File not found. Who moved my cheese?');
       res.end();
     });
-    return;
   }
   res.writeHead(400, {'Content-Type': 'text/plain'});
   res.write('Bad request.');
-  res.end;
+  res.end();
 });
+
+// router.delete('/api/cheese', function(req, res) {
+//   if(req.url.query.id) {
+//     storage.deleteItem('cheese', req.url.query.id) // TODO don't keep this line, is here for router to work
+//     // console.log('::: about to delete record :::');
+//     // TODO delete the record here
+//     .then( cheese => {
+//       res.writeHead(204, {'Content-Type': 'text/plain'});
+//       // res.write('The cheese has been deleted. I mean, eaten.'); // TODO try the line above
+//       res.end();
+//     })
+//     .catch( err => {
+//       res.writeHead(404, {'Content-Type': 'text/plain'});
+//       res.write('File not found. Who moved my cheese?');
+//       res.end();
+//     });
+//     return;
+//   }
+//   res.writeHead(400, {'Content-Type': 'text/plain'});
+//   res.write('Bad request.');
+//   res.end();
+// });
 
 const server = http.createServer(router.route());
 

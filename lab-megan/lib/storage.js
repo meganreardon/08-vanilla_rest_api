@@ -1,6 +1,6 @@
 'use strict';
 
-const storage = [];
+const storage = {};
 
 module.exports = exports = {};
 
@@ -36,10 +36,11 @@ exports.deleteItem = function(schemaName, item) {
 
   if (!schemaName) return Promise.reject(new Error('Schema name was expected, not schema name arrived.'));
 
+  if (!id) return reject(new Error('An id was expected, no id arrived.'));
+
   if (!item) return Promise.reject(new Error('Item was expected, no item arrived.'));
 
-  // TODO delete code here
-  // TODO might need to do more here, fetch item to delete it?
+  delete schema[id];
 
-  return Promise.resolve(item);
+  resolve();
 };
