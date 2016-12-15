@@ -2,12 +2,12 @@
 
 const uuid = require('node-uuid');
 
-module.exports = function(name, content) {
+module.exports = function(color, pokableness) {
 
-  if (!name) throw new Error('A name was expected but none arrived.');
-  if (!content) throw new Error('Content was expected but none arrived.');
+  if (!color) throw new Error('A color was expected but none arrived.');
+  if (!pokableness) throw new Error('The pokableness was expected but none arrived.');
 
   this.id = uuid.v1();
-  this.name = name;
-  this.content = content;
+  this.color = color;
+  this.pokableness = pokableness;
 };

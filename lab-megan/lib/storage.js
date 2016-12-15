@@ -9,9 +9,10 @@ exports.createItem = function(schemaName, item) {
   if (!schemaName) return Promise.reject(new Error('Schema name was expected, no schema name arrived.'));
 
   if (!item) return Promise.reject(new Error('Item was expected, no item arrived.'));
-  if(!storage[schemaName]) storage[schemaName] = {};
 
+  if(!storage[schemaName]) storage[schemaName] = {};
   storage[schemaName][item.id] = item;
+
   return Promise.resolve(item);
 };
 
@@ -29,4 +30,16 @@ exports.fetchItem = function(schemaName, id) {
 
     resolve(item);
   });
+};
+
+exports.deleteItem = function(schemaName, item) {
+
+  if (!schemaName) return Promise.reject(new Error('Schema name was expected, not schema name arrived.'));
+
+  if (!item) return Promise.reject(new Error('Item was expected, no item arrived.'));
+
+  // TODO delete code here
+  // TODO might need to do more here, fetch item to delete it?
+
+  return Promise.resolve(item);
 };
