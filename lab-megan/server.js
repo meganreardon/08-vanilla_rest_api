@@ -35,11 +35,12 @@ router.delete('/api/cheese', function(req, res) {
   // console.log('::: reached inside delete block of server.js :::');
   if (req.url.query.id) {
     storage.deleteItem('cheese', req.url.query.id)
-    .then( cheese => {
+    .then( () => {
       res.writeHead(204, {'Content-Type': 'text/plain'});
       res.end();
     })
     .catch( err => {
+      console.error(err);
       res.writeHead(404, {'Content-Type': 'text/plain'});
       res.write('File not found. Who moved my cheese?');
       res.end();
