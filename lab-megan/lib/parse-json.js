@@ -2,7 +2,7 @@
 
 module.exports = function(req) {
   return new Promise( (resolve, reject) => {
-    if(req.method === 'POST' || req.method === 'PUT' || req.method === 'DELETE') {
+    if(req.method === 'POST' || req.method === 'PUT') {
       var body = '';
 
       req.on('data', data => {
@@ -11,6 +11,7 @@ module.exports = function(req) {
 
       req.on('end', () => {
         try {
+          // console.log('Body is: ', body);
           req.body = JSON.parse(body);
           resolve(req);
         } catch (err) {

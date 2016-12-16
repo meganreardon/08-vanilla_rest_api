@@ -43,8 +43,7 @@ describe('DELETE: /api/cheese', function() {
     .end((err, res) => {
       if (err) return done(err);
       expect(res.status).to.equal(204);
-      // TODO
-      // expect record to not exist ??
+      // TODO expect record to not exist
       done();
     });
   });

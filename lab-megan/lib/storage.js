@@ -6,6 +6,8 @@ module.exports = exports = {};
 
 exports.createItem = function(schemaName, item) {
 
+  // console.log('::: reached inside createItem block of storage.js :::');
+
   if (!schemaName) return Promise.reject(new Error('Schema name was expected, no schema name arrived.'));
 
   if (!item) return Promise.reject(new Error('Item was expected, no item arrived.'));
@@ -19,7 +21,10 @@ exports.createItem = function(schemaName, item) {
 exports.fetchItem = function(schemaName, id) {
   return new Promise((resolve, reject) => {
 
+    // console.log('::: reached inside fetchItem block :::');
+
     if (!schemaName) return reject(new Error('Schema name was expected, no schema name arrived.'));
+
     if (!id) return reject(new Error('An id was expected, no id arrived.'));
 
     var schema = storage[schemaName];
@@ -32,15 +37,24 @@ exports.fetchItem = function(schemaName, id) {
   });
 };
 
-exports.deleteItem = function(schemaName, item) {
+exports.deleteItem = function(schemaName, id) {
+  return new Promise((resolve, reject) => {
 
-  if (!schemaName) return Promise.reject(new Error('Schema name was expected, not schema name arrived.'));
+    if (!schemaName) return reject(new Error('Schema name was expected, no schema name arrived.'));
 
-  if (!id) return reject(new Error('An id was expected, no id arrived.'));
+    if(!id) return reject(new Error('An id was expected, no id arrived.'));
 
-  if (!item) return Promise.reject(new Error('Item was expected, no item arrived.'));
+    var doomedSchema = storage[schemaName];
+    if (!doomedSchema) return reject(new Error('Schema not found.'));
 
-  delete schema[id];
+    var doomedItem = doomedSchema[id];
+    if (!doomedItem) return reject(new Error('Item not found.'));
 
-  resolve();
+    delete doomedSchema[id];
+
+    // console.log('in deleteItem of storage.js, id is: ', id);
+
+    resolve(doomedSchema);
+
+  });
 };
