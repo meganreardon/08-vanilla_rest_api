@@ -43,9 +43,21 @@ describe('DELETE: /api/cheese', function() {
     .end((err, res) => {
       if (err) return done(err);
       expect(res.status).to.equal(204);
-      // TODO
-      // expect record to not exist ??
+      // TODO expect record to not exist
       done();
     });
   });
 });
+
+// describe('DELETE: /api/cheese', function() {
+//   it('should delete a cheese', function(done) {
+//     request.delete(`localhost:8000/api/cheese?id=${cheese.id}`)
+//     .end((err, res) => {
+//       if (err) return done(err);
+//       expect(res.status).to.equal(204);
+//       // TODO
+//       // expect record to not exist ??
+//       done();
+//     });
+//   });
+// });
