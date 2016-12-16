@@ -42,6 +42,8 @@ describe('Cheese Routes', function() {
       .end((err, res) => {
         if (err) return done(err);
         expect(res.status).to.equal(204);
+        // expect record to not exist // TODO find out why line below invalid
+        // expect(`localhost:8000/api/cheese?id=${cheese.id}`).to.not.exist;
         done();
       });
     });
@@ -53,7 +55,7 @@ describe('Cheese Routes', function() {
       .end((err, res) => {
         if (err) return done(err);
         expect(res.status).to.equal(404);
-        expect(res.txt).to.equal('Your cheese was not found.');
+        expect(res.txt).to.equal('File not found. Who moved my cheese?');
         done();
       });
     });
@@ -72,7 +74,7 @@ describe('Cheese Routes', function() {
   });
 
   describe('POST request resulting in 400 error', function() {
-    it('should respond with bad request if no request body was provided', function(done) {
+    it('should respond with bad request if no request body was provided or body was invalid', function(done) {
       request.post('localhost:8000/api/cheese')
       .send({ shape: 'test shape', texture: 'test texture'})
       .end((err, res) => {

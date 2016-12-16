@@ -40,7 +40,7 @@ Router.prototype.route = function () {
       console.error('route not found');
 
       res.writeHead(404, {'Content-Type': 'text/plain'});
-      res.write('File not found. Someone moved my cheese.');
+      res.write('File not found. Who moved my cheese?');
       res.end();
     })
     .catch( err => {

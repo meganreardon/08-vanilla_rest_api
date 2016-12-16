@@ -61,7 +61,7 @@ router.post('/api/cheese', function(req, res) {
   } catch (err) {
     console.error(err);
     res.writeHead(400,{'Content-Type': 'text/plain'});
-    res.write('Bad request. Bad cheese.');
+    res.write('Bad request.');
     res.end();
   }
 });
