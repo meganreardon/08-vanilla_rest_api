@@ -61,6 +61,18 @@ describe('Cheese Routes', function() {
     });
   });
 
+  describe('GET request resulting in 404 error', function() {
+    it('should return a 404 error when given an id for an incorrect path', function(done) {
+      request.get('localhost:8000/api/bread?id=404')
+      .end((err, res) => {
+        // if (err) return done(err);
+        expect(res.status).to.equal(404);
+        expect(res.text).to.equal('File not found. Who moved my cheese?');
+        done();
+      });
+    });
+  });
+
   describe('GET request resulting in 400 error', function() {
     it('should respond with a bad request if user did not provide an id', function(done) {
       request.get('localhost:8000/api/cheese?id=')
