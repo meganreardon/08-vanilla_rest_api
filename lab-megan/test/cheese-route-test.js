@@ -53,9 +53,9 @@ describe('Cheese Routes', function() {
     it('should return a 404 error when given an id for a missing or nonexistant file', function(done) {
       request.get('localhost:8000/api/cheese?id=404')
       .end((err, res) => {
-        if (err) return done(err);
+        // if (err) return done(err);
         expect(res.status).to.equal(404);
-        expect(res.txt).to.equal('File not found. Who moved my cheese?');
+        expect(res.text).to.equal('File not found. Who moved my cheese?');
         done();
       });
     });
@@ -65,9 +65,8 @@ describe('Cheese Routes', function() {
     it('should respond with a bad request if user did not provide an id', function(done) {
       request.get('localhost:8000/api/cheese?id=')
       .end((err, res) => {
-        if (err) return done(err);
         expect(res.status).to.equal(400);
-        expect(res.txt).to.equal('Bad request.');
+        expect(res.text).to.equal('Bad request.');
         done();
       });
     });
@@ -78,9 +77,8 @@ describe('Cheese Routes', function() {
       request.post('localhost:8000/api/cheese')
       .send({ shape: 'test shape', texture: 'test texture'})
       .end((err, res) => {
-        if (err) return done(err);
         expect(res.status).to.equal(400);
-        expect(res.txt).to.equal('Bad request.');
+        expect(res.text).to.equal('Bad request.');
         done();
       });
     });

@@ -52,9 +52,9 @@ exports.deleteItem = function(schemaName, id) {
 
     delete doomedSchema[id];
 
-    // console.log('in deleteItem of storage.js, id is: ', id);
+    // console.log('::: in deleteItem of storage.js, id is: ', id);
 
-    resolve(doomedSchema);
+    resolve();
 
   });
 };
