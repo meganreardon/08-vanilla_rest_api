@@ -2,7 +2,8 @@
 
 module.exports = function(req) {
   return new Promise( (resolve, reject) => {
-    if(req.method === 'POST' || req.method === 'PUT' || req.method === 'DELETE') {
+    // if(req.method === 'POST' || req.method === 'PUT' || req.method === 'DELETE') { // orig line
+    if(req.method === 'POST' || req.method === 'PUT') {
       var body = '';
 
       req.on('data', data => {
@@ -18,11 +19,11 @@ module.exports = function(req) {
           reject(err);
         }
       });
-
-      req.on('error', err => {
-        console.error(err);
-        reject(err);
-      });
+      // NOTE BELOW BLOCK REMOVED FOR TROUBLESHOOTING
+      // req.on('error', err => {
+      //   console.error(err);
+      //   reject(err);
+      // });
 
       return;
     }

@@ -46,25 +46,26 @@ router.post('/api/cheese', function(req, res) {
   }
 });
 
-router.delete('/api/cheese', function(req, res) {
-  if (req.url.query.id) {
-    storage.deleteItem('cheese', req.url.query.id)
-    .then( cheese => {
-      res.writeHead(204, {'Content-Type': 'application/json'});
-      res.write('Your cheese has been eaten. I mean deleted.'); //NOTE this might not show up by default
-      res.end();
-    })
-    .catch( err => {
-      console.error(err);
-      res.writeHead(404, {'Content-Type': 'text/plain'});
-      res.write('File not found. Who moved my cheese?');
-      res.end();
-    });
-  }
-  res.writeHead(400, {'Content-Type': 'text/plain'});
-  res.write('Bad request.');
-  res.end();
-});
+// NOTE BELOW BLOCK REMOVED FOR TROUBLESHOOTING
+// router.delete('/api/cheese', function(req, res) {
+//   if (req.url.query.id) {
+//     storage.deleteItem('cheese', req.url.query.id)
+//     .then( cheese => {
+//       res.writeHead(204, {'Content-Type': 'application/json'});
+//       res.write('Your cheese has been eaten. I mean deleted.'); //NOTE this might not show up by default
+//       res.end();
+//     })
+//     .catch( err => {
+//       console.error(err);
+//       res.writeHead(404, {'Content-Type': 'text/plain'});
+//       res.write('File not found. Who moved my cheese?');
+//       res.end();
+//     });
+//   }
+//   res.writeHead(400, {'Content-Type': 'text/plain'});
+//   res.write('Bad request.');
+//   res.end();
+// });
 
 // router.delete('/api/cheese', function(req, res) {
 //   if(req.url.query.id) {

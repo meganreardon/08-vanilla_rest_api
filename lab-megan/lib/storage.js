@@ -32,15 +32,16 @@ exports.fetchItem = function(schemaName, id) {
   });
 };
 
-exports.deleteItem = function(schemaName, item) {
-
-  if (!schemaName) return Promise.reject(new Error('Schema name was expected, not schema name arrived.'));
-
-  if (!id) return reject(new Error('An id was expected, no id arrived.'));
-
-  if (!item) return Promise.reject(new Error('Item was expected, no item arrived.'));
-
-  delete schema[id];
-
-  resolve();
-};
+//NOTE BELOW REMOVED FOR TROUBLESHOOTING
+// exports.deleteItem = function(schemaName, item) {
+//
+//   if (!schemaName) return Promise.reject(new Error('Schema name was expected, not schema name arrived.'));
+//
+//   if (!id) return reject(new Error('An id was expected, no id arrived.'));
+//
+//   if (!item) return Promise.reject(new Error('Item was expected, no item arrived.'));
+//
+//   delete schema[id];
+//
+//   resolve();
+// };
