@@ -1,6 +1,6 @@
 # PROJECT DESCRIPTION
 
-This is a simple REST server build using node.js and vanilla JavaScript. This project creates, displays and deletes records of different cheeses. It was created as a project during week two of Code Fellows 401 JavaScript class.
+This is a simple REST server API using node.js and vanilla JavaScript. This project creates, displays and deletes records of different cheeses. It was created as a project during week two of Code Fellows 401 JavaScript class.
 
 ### HOW TO GET UP AND RUNNING
 
