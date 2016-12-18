@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/meganreardon/08-vanilla_rest_api#readme",
   "dependencies": {
+    "bluebird": "^3.4.6",
     "node-uuid": "^1.4.7",
     "uuid": "^3.0.1"
   },

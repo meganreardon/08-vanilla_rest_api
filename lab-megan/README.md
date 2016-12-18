@@ -46,5 +46,5 @@ If you search for a record of a cheese that does not exist or has been deleted y
 Clone this repository and run the following:
 ``` JavaScript
   npm i
-  npm i -D mocha chai superagent
+  npm i -D mocha chai superagent gulp gulp-mocha gulp-eslint
 ```
