@@ -6,7 +6,7 @@ const response = require('../lib/response.js');
 
 module.exports = function(router) {
 
-  router.get('/api/cheese', function(req, res) {
+  router.get('/data/cheese', function(req, res) {
     // console.log(':::reached inside get api function:::');
     if (req.url.query.id) {
       storage.fetchItem('cheese', req.url.query.id)
@@ -32,8 +32,8 @@ module.exports = function(router) {
     // res.end();
   });
 
-  router.delete('/api/cheese', function(req, res) {
-    // console.log('::: reached inside delete block of server.js :::');
+  router.delete('/data/cheese', function(req, res) {
+    console.log('::: reached inside delete block of server.js :::');
     if (req.url.query.id) {
       storage.deleteItem('cheese', req.url.query.id)
       .then( () => {
@@ -56,17 +56,19 @@ module.exports = function(router) {
     // res.end();
   });
 
-  router.post('/api/cheese', function(req, res) {
+  router.post('/data/cheese', function(req, res) {
     try {
       var cheese = new Cheese(req.body.color, req.body.pokableness);
       storage.createItem('cheese', cheese);
-      response.sentJSON(res, 200, cheese);
+      // console.log('::: reached body of router post');
+      response.sendJSON(res, 200, cheese);
       // res.writeHead(200,{'Content-Type': 'application/json'});
       // res.write(JSON.stringify(cheese));
       // res.end();
     } catch (err) {
+      // console.log('::: reached body of router post error');
       console.error(err);
-      response.sentText(res, 400, 'Bad request.');
+      response.sendText(res, 400, 'Bad request.');
       // res.writeHead(400,{'Content-Type': 'text/plain'});
       // res.write('Bad request.');
       // res.end();

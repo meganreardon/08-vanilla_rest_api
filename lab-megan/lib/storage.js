@@ -36,7 +36,7 @@ exports.fetchItem = function(schemaName, id) {
   return fs.readFileProm(`${__dirname}/../data/${schemaName}/${id}.json`)
   .then(data => {
     // try {
-    let item = JSON.parge(data.toString());
+    let item = JSON.parse(data.toString());
     return item;
     // } catch (err) {
     //   return Promise.reject(err);
@@ -55,24 +55,54 @@ exports.fetchItem = function(schemaName, id) {
 };
 
 exports.deleteItem = function(schemaName, id) {
-  return new Promise((resolve, reject) => {
+  // return new Promise((resolve, reject) => {
 
-    if (!schemaName) return reject(new Error('Schema name was expected, no schema name arrived.'));
+  if (!schemaName) return Promise.reject(new Error('Schema name was expected, no schema name arrived.'));
 
-    if(!id) return reject(new Error('An id was expected, no id arrived.'));
+  if(!id) return Promise.reject(new Error('An id was expected, no id arrived.'));
 
-    var doomedSchema = storage[schemaName];
-    if (!doomedSchema) return reject(new Error('Schema not found.'));
+  return fs.unlink(`${__dirname}/../data/${schemaName}/${id}.json`)
+  // .then( data => {
+  .then( data => {
+    // try {
+    // let item = JSON.parse(data.toString());
+    // return item;
+    console.log('\n\n\::: data is: ', data);
+    console.log('\n\n\::: have reached inside .then block of delete item in storage.js');
+    // fs.unlink(`${__dirname}/../data/${schemaName}/${id}.json`);
+    return;
+    // console.log('::: trying to delete data[schemaName][id]');
+    // console.log('::: here we go\n\n');
+    // // console.log('::: trying to delete data[schemaName][id]:', data[schemaName][id]);
+    //
+    // console.log(data);
+    // console.log(':::', fs.readFileProm(`${__dirname}/../data/${schemaName}/${id}.json`));
+    // console.log(':::', `${__dirname}/../data/${schemaName}/${id}.json`);
+    // console.log(':::', `just the id is: ${id}`);
+    // delete `${__dirname}/../data/${schemaName}/${id}.json`;
+    // console.log('::: done');
+    // delete data[schemaName][id]; // nope
 
-    var doomedItem = doomedSchema[id];
-    if (!doomedItem) return reject(new Error('Item not found.'));
+    // NOTE fs.unlink
 
-    delete doomedSchema[id];
+    // } catch (err) {
+    //   return Promise.reject(err);
+    // }
+  })
+  .catch( err => Promise.reject(err));
 
-    // console.log('::: in deleteItem of storage.js, id is: ', id);
-
-    resolve();
-
-    // TODO: refactor the delete code the way we did for create and fetch
-  });
+  //   var doomedSchema = storage[schemaName];
+  //   if (!doomedSchema) return reject(new Error('Schema not found.'));
+  //
+  //   var doomedItem = doomedSchema[id];
+  //   if (!doomedItem) return reject(new Error('Item not found.'));
+  //
+  //   delete doomedSchema[id];
+  //
+  //   // console.log('::: in deleteItem of storage.js, id is: ', id);
+  //
+  //   resolve();
+  //
+  //   // TODO: refactor the delete code the way we did for create and fetch
+  // });
 };
