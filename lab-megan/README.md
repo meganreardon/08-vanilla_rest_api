@@ -1,6 +1,8 @@
 # PROJECT DESCRIPTION
 
-This is a simple REST server API using node.js and vanilla JavaScript. This project creates, displays and deletes records of different cheeses. It was created as a project during week two of Code Fellows 401 JavaScript class.
+This is a simple REST server API using node.js. This project creates, displays and deletes records of different cheeses. It records the cheeses in persistent storage in a data folder.
+
+It was created as a project during week two of Code Fellows 401 JavaScript class.
 
 ### HOW TO GET UP AND RUNNING
 
@@ -20,24 +22,25 @@ The second terminal window will be used to make posts, requests and deletions to
 ##### POST
 To Create A Cheese
 ``` JavaScript
-  http POST localhost:8000/api/cheese color="<color>" pokableness="<pokableness>"
+  http POST localhost:8000/data/cheese color="<color>" pokableness="<pokableness>"
 ```
 This will return your newly created cheese record along with a unique id. You will also get a 400 status message.
 
+Please note: if your server is reporting a port number other than 8000 please use that port number instead.
 
 ##### GET
 To Get A Cheese Record Back
 ``` JavaScript
-  http localhost:8000/api/cheese?id=<unique id you know exists>
+  http localhost:8000/data/cheese?id=<unique id you know exists>
 ```
 This will return the record of the cheese as well as a 400 status message.
 
 ##### DELETE
 To Delete A Record Of A Cheese
 ``` JavaScript
-  http DELETE localhost:8000/api/cheese?id=<unique id you know exits>
+  http DELETE localhost:8000/data/cheese?id=<unique id you know exits>
 ```
-This will return a status code of 204.
+This will return a status code of 204 and delete the object from the /data/cheese folder.
 
 If you search for a record of a cheese that does not exist or has been deleted you will get a 404 error. If you set the parameters for creating a new cheese incorrectly you will get a 400 error.
 

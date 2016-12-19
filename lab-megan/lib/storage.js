@@ -13,6 +13,7 @@ exports.createItem = function(schemaName, item) {
   if (!item) return Promise.reject(new Error('Item was expected, no item arrived.'));
 
   let json = JSON.stringify(item);
+  // console.log(`::: id is: ${item.id}`);
   return fs.writeFileProm(`${__dirname}/../data/${schemaName}/${item.id}.json`, json)
   .then( () => item)
   .catch (err => Promise.reject(err));

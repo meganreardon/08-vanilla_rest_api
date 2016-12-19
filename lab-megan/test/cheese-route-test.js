@@ -7,6 +7,8 @@ require('../server.js');
 
 describe('Cheese Routes', function() {
   // var cheese = null;
+  // var cheese = request.post('localhost:3000/data/cheese')
+  // .send({ color: 'test color', pokableness: 'test pokableness'});
 
   describe('POST: /data/cheese', function() {
     it('Should return a cheese', function(done) {
@@ -39,18 +41,20 @@ describe('Cheese Routes', function() {
   });
 
   describe('DELETE: /data/cheese', function() {
-    it('should delete a cheese', function(done) {
+    // creating a cheese whose ID we can grab to delete for the test
+    before ( function(done) {
       request.post('localhost:3000/data/cheese')
-      .send({ color: 'test color', pokableness: 'test pokableness'});
-      // var testCheese = res.text;
-      // request.delete(`localhost:3000/data/cheese?id=${cheese.id}`)
-      request.delete()
+      .send({ color: 'test color', pokableness: 'test pokableness'})
+      .end((err, res) => {
+        this.cheese = res.body;
+        done();
+      });
+    });
+    it('should delete a cheese', function(done) {
+      request.delete(`localhost:3000/data/cheese?id=${this.cheese.id}`)
       .end((err, res) => {
         if (err) return done(err);
         expect(res.status).to.equal(204);
-        expect(res.body.color).to.be.null;
-        // expect record to not exist // TODO find out why line below invalid
-        // expect(`localhost:3000/data/cheese?id=${cheese.id}`).to.not.exist;
         done();
       });
     });
