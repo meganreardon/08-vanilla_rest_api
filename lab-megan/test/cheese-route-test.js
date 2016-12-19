@@ -6,7 +6,7 @@ const expect = require('chai').expect;
 require('../server.js');
 
 describe('Cheese Routes', function() {
-  var cheese = null;
+  // var cheese = null;
 
   describe('POST: /data/cheese', function() {
     it('Should return a cheese', function(done) {

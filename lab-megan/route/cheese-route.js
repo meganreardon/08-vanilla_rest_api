@@ -32,8 +32,28 @@ module.exports = function(router) {
     // res.end();
   });
 
+
+  router.post('/data/cheese', function(req, res) {
+    try {
+      var cheese = new Cheese(req.body.color, req.body.pokableness);
+      storage.createItem('cheese', cheese);
+      // console.log('::: reached body of router post');
+      response.sendJSON(res, 200, cheese);
+      // res.writeHead(200,{'Content-Type': 'application/json'});
+      // res.write(JSON.stringify(cheese));
+      // res.end();
+    } catch (err) {
+      // console.log('::: reached body of router post error');
+      console.error(err);
+      response.sendText(res, 400, 'Bad request.');
+      // res.writeHead(400,{'Content-Type': 'text/plain'});
+      // res.write('Bad request.');
+      // res.end();
+    }
+  });
+
   router.delete('/data/cheese', function(req, res) {
-    console.log('::: reached inside delete block of server.js :::');
+    // console.log('::: reached inside delete block of server.js :::');
     if (req.url.query.id) {
       storage.deleteItem('cheese', req.url.query.id)
       .then( () => {
@@ -54,25 +74,6 @@ module.exports = function(router) {
     // res.writeHead(400, {'Content-Type': 'text/plain'});
     // res.write('Bad request.');
     // res.end();
-  });
-
-  router.post('/data/cheese', function(req, res) {
-    try {
-      var cheese = new Cheese(req.body.color, req.body.pokableness);
-      storage.createItem('cheese', cheese);
-      // console.log('::: reached body of router post');
-      response.sendJSON(res, 200, cheese);
-      // res.writeHead(200,{'Content-Type': 'application/json'});
-      // res.write(JSON.stringify(cheese));
-      // res.end();
-    } catch (err) {
-      // console.log('::: reached body of router post error');
-      console.error(err);
-      response.sendText(res, 400, 'Bad request.');
-      // res.writeHead(400,{'Content-Type': 'text/plain'});
-      // res.write('Bad request.');
-      // res.end();
-    }
   });
 
 };
